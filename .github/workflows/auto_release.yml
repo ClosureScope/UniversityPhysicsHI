@@ -54,7 +54,7 @@ jobs:
           fc-cache -fv
 
       - name: Compile Typst to PDF
-        run: typst compile UniversityPhysicscH-notebook.typ
+        run: typst compile UniversityPhysicsH-notebook.typ
 
       - name: Generate Automated Release
         uses: softprops/action-gh-release@v2
