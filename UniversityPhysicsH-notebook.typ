@@ -22,6 +22,10 @@
   $ s = s(t) $
   $ arrow(v) = (d s) / (d t) arrow(e)_t $
   $ arrow(a) = (d v) / (d t) arrow(e)_t + v^2 / rho arrow(e)_n $
+  #proposition[曲率 曲率半径][
+    $ k = (d theta) / (d s) = abs(y^('')) / (1 + y^('2))^(3/2) $
+    $ rho = 1 / k $
+  ]
 + 极坐标系
   $ arrow(r) = r(t) arrow(e)_r (t) $
   $ arrow(v) = dot(r) arrow(e)_r + r dot(theta) arrow(e)_theta $
@@ -423,7 +427,7 @@ $ u = omega / k $
 #proposition[速率分布与速度分布][$ f(v) d v = F(v_x, v_y, v_z) dot 4 pi v^2 d v $]
 #proposition[最可几速率 平均速率 方均根速率][
   $ v_p = sqrt((2 k_B T) / m) = sqrt((2 R T) / M) $
-  $ overline(v) = sqrt((8 k_B T) / m) = sqrt((8 R T) / M) $
+  $ overline(v) = sqrt((8 k_B T) /(pi m)) = sqrt((8 R T) / (pi M)) $
   $ sqrt(overline(v^2)) = sqrt((3 k_B T) / m) = sqrt((3 R T) / M) $
 ]
 
@@ -563,6 +567,7 @@ $ u = omega / k $
 ]
 
 #proposition[熵的计算][
+  $ S = nu C_(V,m) ln (P V^gamma) $
   $
     Delta S & = nu C_(V,m) ln T / T_0 + nu R ln V / V_0 \
             & = nu C_(V,m) ln P / P_0 + nu C_(P,m) ln V / V_0 \
