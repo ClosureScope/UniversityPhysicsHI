@@ -37,7 +37,7 @@
   $ arrow(r) = arrow(R) + arrow(r)^' $
   $ arrow(v) = arrow(u) + arrow(v)^' $
   $ arrow(a) = (d arrow(u))/(d t) + arrow(a)^' $
-+ 参考系间的匀速定轴转动
++ 参考系间的定轴转动
   $ arrow(v) = arrow(v)^' + arrow(omega) times arrow(r) $
   $
     arrow(a) = arrow(a)^' + 2 arrow(omega) times arrow(v)^' + arrow(omega) times (arrow(omega) times arrow(r)) + arrow(alpha) times arrow(r)
@@ -69,8 +69,8 @@
   $ E_p = -integral arrow(F) (arrow(r)) dot d arrow(r) $
   $ arrow(F) = - nabla E_p $]
 #note[Nabla算子][
-  - 直角坐标系 $ nabla = (partial/(partial x), partial/(partial y), partial/(partial z)) $
-  - 极坐标系 $ nabla = (partial / (partial r), partial / (r partial theta)) $
+  - 直角坐标系 $ nabla = arrow(i) partial/(partial x) + arrow(j) partial/(partial y) + arrow(k) partial/(partial z) $
+  - 极坐标系 $ nabla = arrow(e)_r partial / (partial r) + arrow(e)_theta partial / (r partial theta) $
 ]
 == 势能曲线
 #definition[平衡与稳定][
@@ -101,7 +101,9 @@
 #definition[质心][$ arrow(r)_c = (sum m_i arrow(r)_i) / (sum m_i) $$
     arrow(r)_c = (integral arrow(r) d m) / (integral d m )
   $]
-#proposition[][$ m arrow(r)_c = sum m_i arrow(r)_i $$ m arrow(v)_c = sum m_i arrow(v)_i $]
+#proposition[][$ m arrow(r)_c = sum m_i arrow(r)_i $$ m arrow(v)_c = sum m_i arrow(v)_i $$
+    m arrow(a)_c = sum m_i arrow(a)_i
+  $]
 #proposition[][质心系是零动量系]
 #proposition[][质心系中功能原理，角动量定理仍然成立]
 #theorem[质心运动定理][$ arrow(F)_(e x) = m arrow(a)_c $]
@@ -200,13 +202,13 @@ $ L = I omega $
 #theorem[柯尼希定理][
 
   $ "质点系动能" = "质心动能" + "相对质心动能" $
-  刚体动能为
-  $ E_k = 1/2 m v_c^2 + 1/2 I_c omega^2 $
 ]
 #proposition[纯滚动][$ v_c = omega R $$ a_c = alpha R $]
 == 刚体的进动
-$ arrow(M) = arrow(Omega) times arrow(L) $
-$ Omega = (m g r_c) / (I omega) $
+#proposition[进动][
+  $ arrow(M) = arrow(Omega) times arrow(L) $
+  $ Omega = (m g r_c) / (I omega) $
+]
 = 相对论
 == 力学相对性原理、伽利略变换、牛顿绝对时空观
 
@@ -276,7 +278,7 @@ $ gamma = 1 / sqrt(1 - u^2 / c^2) $
   ]
 ]
 == 相对论质量和动量
-#definition[相对论质量][$ m = m_0 / (1 - v^2 / c^2) $]
+#definition[相对论质量][$ m = m_0 / sqrt(1 - v^2 / c^2) $]
 == 相对论动能 质能关系
 #definition[相对论动能][$ E_k = m c^2 - m_0 c^2 $]
 #proposition[相对论能量和动量的关系][$ E^2 = E_0^2 + p^2 c^2 $]
@@ -464,7 +466,7 @@ $ u = omega / k $
 
 == 范德瓦尔斯气体状态方程
 #theorem[范德瓦尔斯气体状态方程][$ (P + a nu^2 / V^2)(V - nu b) = nu R T $]
-
+#proposition[实际气体内能][$ E = nu C_(V,m) T - a nu^2/ V $]
 == 气体内分子的碰撞
 #proposition[碰撞频率 平均自由程][
   $ overline(Z) = sqrt(2) pi d^2 overline(v) n $
@@ -475,7 +477,7 @@ $ u = omega / k $
 == 热力学第一定律
 #theorem[热力学第一定律][
   $ Q = Delta E + A $
-  $ T d S = d E + p d V $
+  $ T d S = d E + P d V $
 ]
 
 #proposition[准静态过程功的计算][$ d A = P d V $$ A = integral_(V_1)^(V_2) P d V $]
