@@ -1,5 +1,9 @@
 name: Auto-Compile and Release PDF
 
+# ── 通用工作流 ──────────────────────────────────────────────────
+# 此文件在所有课程仓库里完全相同，无需修改。
+# 课程相关信息全部从 course.toml 读取；笔记源文件自动探测。
+
 on:
   push:
     branches:
@@ -11,10 +15,31 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Read course metadata
+        id: course
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import tomllib
+          with open("course.toml", "rb") as f:
+              c = tomllib.load(f)
+          print(f"name_en={c.get('name_en', 'Course')}")
+          PY
+
+      - name: Regenerate README from course.toml
+        run: |
+          python3 scripts/gen_readme.py
+          if ! git diff --quiet README.md; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add README.md
+            git commit -m "chore: regenerate README from course.toml"
+            git push
+          fi
 
       - name: Setup Typst
         uses: typst-community/setup-typst@v4
@@ -54,15 +79,21 @@ jobs:
           fc-cache -fv
 
       - name: Compile Typst to PDF
-        run: typst compile UniversityPhysicsH-notebook.typ
+        # 编译除 template.typ 外的所有 .typ 文件
+        run: |
+          for f in *.typ; do
+            [ "$f" = "template.typ" ] && continue
+            echo "Compiling $f"
+            typst compile "$f"
+          done
 
       - name: Generate Automated Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: latest
-          name: "Latest Notes"
+          name: "${{ steps.course.outputs.name_en }} — Latest Notes"
           body: |
-            This is an automated build of the latest notes.
+            Automated build of the latest notes for ${{ steps.course.outputs.name_en }}.
             Last updated: ${{ github.event.head_commit.timestamp }}
           files: |
             *.pdf
