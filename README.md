@@ -1,6 +1,6 @@
 <div align="center">
 
-# University Physics(H)
+# University Physics (H) I
 
 大学物理（荣誉）（1） · `PHY1251H` · SJTU
 
@@ -14,7 +14,7 @@
 
 ---
 
-Course notes for **University Physics(H)（大学物理（荣誉）（1）, `PHY1251H`）** at **SJTU**,
+Course notes for **University Physics (H) I（大学物理（荣誉）（1）, `PHY1251H`）** at **SJTU**,
 typeset in [Typst](https://typst.app/) and continuously built into a PDF by CI.
 
 ## Download
